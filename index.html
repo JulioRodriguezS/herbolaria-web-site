@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Herbolaria – notas rápidas</title>
+    <meta
+      name="description"
+      content="Notas personales de herbolaria (uso complementario). Pasa el cursor sobre cada planta para ver la foto."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar__inner">
+        <div class="brand">
+          <div class="brand__title">🌿 Herbolaria</div>
+          <div class="brand__subtitle">Notas rápidas para recordar tés y plantas</div>
+        </div>
+
+        <div class="controls">
+          <label class="search">
+            <span class="search__label">Buscar</span>
+            <input id="q" class="search__input" type="search" placeholder="Ej: ansiedad, riñón, presión..." autocomplete="off" />
+          </label>
+
+          <label class="toggle">
+            <input id="toggleOtros" type="checkbox" checked />
+            <span>Mostrar “Otros”</span>
+          </label>
+        </div>
+      </div>
+
+      <p class="disclaimer">
+        ⚠️ <strong>Recordatorio personal:</strong> esto NO es consejo médico. Es herbolaria como <em>tratamiento complementario</em>.
+        Si tienes una condición (hipertensión, diabetes, embarazo, medicamentos, etc.) consulta a un profesional.
+      </p>
+    </header>
+
+    <main class="layout">
+      <section id="sections" class="sections" aria-label="Categorías de plantas"></section>
+
+      <aside id="preview" class="preview" aria-label="Vista previa">
+        <div class="preview__title">Pasa el cursor en una planta</div>
+        <img id="previewImg" class="preview__img" alt="" />
+        <div id="previewMeta" class="preview__meta"></div>
+      </aside>
+    </main>
+
+    <dialog id="modal" class="modal" aria-label="Detalle de planta">
+      <form method="dialog" class="modal__inner">
+        <button class="modal__close" value="close" aria-label="Cerrar">✕</button>
+
+        <div class="modal__grid">
+          <div>
+            <h2 id="modalTitle" class="modal__title"></h2>
+            <div id="modalTags" class="modal__tags"></div>
+            <ul id="modalNotes" class="modal__notes"></ul>
+            <div id="modalCautions" class="modal__cautions" hidden></div>
+          </div>
+
+          <div class="modal__media">
+            <img id="modalImg" alt="" />
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <footer class="footer">
+      <span>Hecho para GitHub Pages · Edita <code>app.js</code> para agregar plantas/categorías.</span>
+    </footer>
+
+    <script defer src="./app.js"></script>
+  </body>
+</html>
+
+
+/* =========================
+   File: styles.css
+   ========================= */
+:root{
+  --bg: #0b0f12;
+  --panel: #11171c;
+  --panel2: #0f1418;
+  --text: #e8edf2;
+  --muted: #a8b3be;
+  --border: rgba(255,255,255,.10);
+  --shadow: 0 12px 40px rgba(0,0,0,.35);
+
+  --cat-relajantes: rgba(113, 80, 230, .16);
+  --cat-hipertension: rgba(230, 80, 80, .16);
+  --cat-circulacion: rgba(80, 170, 230, .16);
+  --cat-diabetes: rgba(80, 230, 150, .16);
+  --cat-otros: rgba(230, 200, 80, .14);
+}
+
+*{ box-sizing: border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(80,170,230,.14), transparent 60%),
+              radial-gradient(1000px 700px at 90% -20%, rgba(113,80,230,.14), transparent 55%),
+              var(--bg);
+  color: var(--text);
+}
+
+code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+.topbar{
+  position: sticky;
+  top:0;
+  z-index: 10;
+  background: rgba(11,15,18,.78);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar__inner{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap: 16px;
+  padding: 16px clamp(14px, 3vw, 26px);
+}
+
+.brand__title{
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+.brand__subtitle{
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.controls{
+  display:flex;
+  gap: 14px;
+  align-items:center;
+  flex-wrap: wrap;
+  justify-content:flex-end;
+}
+
+.search{
+  display:flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.search__label{ font-size: 12px; color: var(--muted); }
+.search__input{
+  width: min(340px, 70vw);
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(17, 23, 28, .72);
+  color: var(--text);
+  outline: none;
+}
+.search__input:focus{
+  border-color: rgba(255,255,255,.22);
+  box-shadow: 0 0 0 4px rgba(80,170,230,.14);
+}
+
+.toggle{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.toggle input{ accent-color: #7cc7ff; }
+
+.disclaimer{
+  margin: 0;
+  padding: 10px clamp(14px, 3vw, 26px) 14px;
+  color: rgba(232, 237, 242, .92);
+  font-size: 13px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.layout{
+  display:grid;
+  grid-template-columns: 1fr 360px;
+  gap: 16px;
+  padding: 16px clamp(14px, 3vw, 26px) 28px;
+  align-items: start;
+}
+
+.sections{
+  display:flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section{
+  border: 1px solid var(--border);
+  background: rgba(17,23,28,.50);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.section__head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap: 10px;
+  padding: 14px 14px 12px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.section__title{
+  font-size: 16px;
+  font-weight: 800;
+  margin:0;
+}
+.section__count{
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.cards{
+  padding: 14px;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.card{
+  text-align:left;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(15, 20, 24, .80);
+  border-radius: 16px;
+  padding: 12px 12px 10px;
+  cursor: pointer;
+  transition: transform .08s ease, border-color .12s ease, background .12s ease;
+}
+.card:hover, .card:focus-visible{
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,.22);
+  background: rgba(17, 23, 28, .92);
+  outline: none;
+}
+.card__title{
+  margin:0 0 8px;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: .2px;
+}
+.card__notes{
+  margin:0;
+  padding-left: 16px;
+  color: rgba(232,237,242,.90);
+  font-size: 13px;
+  line-height: 1.35;
+}
+.card__notes li{ margin: 0 0 4px; }
+.card__tags{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.tag{
+  font-size: 11px;
+  color: rgba(232,237,242,.92);
+  border: 1px solid rgba(255,255,255,.14);
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+}
+
+.section--relajantes{ background: linear-gradient(180deg, var(--cat-relajantes), rgba(17,23,28,.50)); }
+.section--hipertension{ background: linear-gradient(180deg, var(--cat-hipertension), rgba(17,23,28,.50)); }
+.section--circulacion{ background: linear-gradient(180deg, var(--cat-circulacion), rgba(17,23,28,.50)); }
+.section--diabetes{ background: linear-gradient(180deg, var(--cat-diabetes), rgba(17,23,28,.50)); }
+.section--otros{ background: linear-gradient(180deg, var(--cat-otros), rgba(17,23,28,.50)); }
+
+.preview{
+  position: sticky;
+  top: 104px;
+  border: 1px solid var(--border);
+  background: rgba(17,23,28,.60);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+.preview__title{
+  font-weight: 900;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.preview__img{
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.25);
+  display: none;
+}
+.preview__meta{
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.footer{
+  padding: 0 clamp(14px, 3vw, 26px) 26px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.modal{
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  padding: 0;
+  background: rgba(15,20,24,.98);
+  color: var(--text);
+  width: min(980px, calc(100vw - 28px));
+  box-shadow: var(--shadow);
+}
+.modal::backdrop{
+  background: rgba(0,0,0,.62);
+}
+.modal__inner{
+  margin: 0;
+  padding: 16px;
+}
+.modal__close{
+  appearance: none;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+  float: right;
+}
+.modal__grid{
+  display:grid;
+  grid-template-columns: 1fr 380px;
+  gap: 16px;
+  align-items: start;
+  margin-top: 10px;
+}
+.modal__title{
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 950;
+}
+.modal__tags{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.modal__notes{
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(232,237,242,.94);
+  line-height: 1.45;
+}
+.modal__notes li{ margin-bottom: 6px; }
+.modal__cautions{
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(230, 80, 80, .10);
+  color: rgba(232,237,242,.92);
+  font-size: 13px;
+}
+.modal__media img{
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+@media (max-width: 980px){
+  .layout{ grid-template-columns: 1fr; }
+  .preview{ display:none; }
+  .modal__grid{ grid-template-columns: 1fr; }
+}
