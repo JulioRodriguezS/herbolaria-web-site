@@ -1,3 +1,16 @@
+/**
+ * Edita este archivo para agregar plantas/categorías.
+ * Estructura de una planta:
+ * {
+ *   id: "muicle",
+ *   nombre: "Muicle",
+ *   categorias: ["hipertension", "circulacion"],
+ *   notas: ["...", "..."],
+ *   precauciones: ["..."], // opcional
+ *   imagen: "assets/muicle.jpg"
+ * }
+ */
+
 const CATEGORIES = [
   { id: "relajantes", titulo: "Relajantes", className: "section--relajantes" },
   { id: "hipertension", titulo: "Hipertensión", className: "section--hipertension" },
