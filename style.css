@@ -22,9 +22,8 @@ html,body{ height:100%; }
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
-  background: radial-gradient(1200px 600px at 20% -10%, rgba(80,170,230,.14), transparent 60%),
-              radial-gradient(1000px 700px at 90% -20%, rgba(113,80,230,.14), transparent 55%),
-              var(--bg);
+  background: #FCECD2;
+  background: linear-gradient(nulldeg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(252, 236, 210, 1) 100%);
   color: var(--text);
 }
 
@@ -136,6 +135,7 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liber
 .section__title{
   font-size: 16px;
   font-weight: 800;
+  color: var(--bg);
   margin:0;
 }
 .section__count{
@@ -170,6 +170,7 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liber
   font-weight: 900;
   font-size: 14px;
   letter-spacing: .2px;
+  color: white;
 }
 .card__notes{
   margin:0;

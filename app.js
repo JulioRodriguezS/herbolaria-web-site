@@ -163,11 +163,21 @@ const state = {
   showOtros: true,
 };
 
+const DIACRITICS_RE = (() => {
+  try {
+    // Unicode property escapes (si el browser lo soporta)
+    return new RegExp("\\p{Diacritic}", "gu");
+  } catch {
+    // Fallback universal: marcas diacríticas en NFD
+    return /[\u0300-\u036f]/g;
+  }
+})();
+
 function normalize(s) {
   return (s ?? "")
     .toString()
     .normalize("NFD")
-    .replace(/\\p{Diacritic}/gu, "")
+    .replace(DIACRITICS_RE, "")
     .toLowerCase()
     .trim();
 }
