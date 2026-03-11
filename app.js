@@ -31,7 +31,7 @@ const PLANTS = [
       "Digestivo y acelerador del metabolismo",
       "Antiséptico",
     ],
-    imagen: "assets/flor-de-castilla.jpg",
+    imagen: "assets/FLOR DE CASTILLA.jpg",
   },
   {
     id: "hierba-de-san-juan",
@@ -46,7 +46,7 @@ const PLANTS = [
     precauciones: [
       "Puede interactuar con medicamentos (antidepresivos, anticonceptivos, anticoagulantes, etc.).",
     ],
-    imagen: "assets/hierba-de-san-juan.jpg",
+    imagen: "assets/HIERBA DE SAN JUAN.jpg",
   },
   {
     id: "muicle",
@@ -58,7 +58,7 @@ const PLANTS = [
       "Alivia dolores de cabeza y de riñón",
       "Anemia (nota de herbolaria)",
     ],
-    imagen: "assets/muicle.jpg",
+    imagen: "assets/MUICLE.jpg",
   },
   {
     id: "te-verde",
@@ -72,7 +72,7 @@ const PLANTS = [
       "Salud dental",
     ],
     precauciones: ["Si eres sensible a la cafeína, úsalo con moderación."],
-    imagen: "assets/te-verde.jpg",
+    imagen: "assets/TE VERDE.jpg",
   },
   {
     id: "eucalipto",
@@ -84,7 +84,7 @@ const PLANTS = [
       "Gripes, resfriados",
       "Dermatitis, reuma (nota de herbolaria)",
     ],
-    imagen: "assets/eucalipto.jpg",
+    imagen: "assets/EUCALIPTO.jpg",
   },
   {
     id: "calendula",
@@ -95,7 +95,7 @@ const PLANTS = [
       "Quemaduras, golpes",
       "Antiinflamatorio",
     ],
-    imagen: "assets/calendula.jpg",
+    imagen: "assets/CALENDULA.jpg",
   },
   {
     id: "chintok",
@@ -106,7 +106,7 @@ const PLANTS = [
       "Diurético natural",
       "Reduce inflamaciones y espasmos",
     ],
-    imagen: "assets/chintok.jpg",
+    imagen: "assets/CHINTOK.jpg",
   },
   {
     id: "doradilla",
@@ -119,11 +119,11 @@ const PLANTS = [
       "Ácido úrico (nota de herbolaria)",
       "Vesícula biliar (nota de herbolaria)",
     ],
-    imagen: "assets/doradilla.jpg",
+    imagen: "assets/DORADILLA.jpg",
   },
   {
-    id: "rabo-de-vibora",
-    nombre: "Rabo de víbora",
+    id: "palo-de-vibora",
+    nombre: "palo de víbora",
     categorias: ["otros"],
     notas: [
       "Úlceras estomacales, cólicos",
@@ -131,7 +131,7 @@ const PLANTS = [
       "Renales y cálculos (nota de herbolaria)",
       "Antioxidante",
     ],
-    imagen: "assets/rabo-de-vibora.jpg",
+    imagen: "assets/PALO DE VIBORA.jpg",
   },
 
   // Plantilla rápida para que agregues más:
@@ -300,7 +300,7 @@ function setPreview(plant) {
   const metaLines = [
     `<strong>${escapeHtml(plant.nombre)}</strong>`,
     ...(plant.notas ?? []).slice(0, 3).map((x) => `• ${escapeHtml(x)}`),
-    "<span class=\\"muted\\">Click para ver detalle</span>",
+    "<span class=\"muted\">Click para ver detalle</span>",
   ];
   els.previewMeta.innerHTML = metaLines.join("<br />");
 }
