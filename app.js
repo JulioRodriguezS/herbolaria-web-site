@@ -7,7 +7,7 @@
  *   categorias: ["hipertension", "circulacion"],
  *   notas: ["...", "..."],
  *   precauciones: ["..."], // opcional
- *   imagen: "assets/muicle.jpg"
+ *   imagen: "assets/muicle.jpeg"
  * }
  */
 
@@ -31,7 +31,7 @@ const PLANTS = [
       "Digestivo y acelerador del metabolismo",
       "Antiséptico",
     ],
-    imagen: "assets/FLOR DE CASTILLA.jpg",
+    imagen: "assets/FLOR DE CASTILLA.jpeg",
   },
   {
     id: "hierba-de-san-juan",
@@ -46,7 +46,7 @@ const PLANTS = [
     precauciones: [
       "Puede interactuar con medicamentos (antidepresivos, anticonceptivos, anticoagulantes, etc.).",
     ],
-    imagen: "assets/HIERBA DE SAN JUAN.jpg",
+    imagen: "assets/HIERBA DE SAN JUAN.jpeg",
   },
   {
     id: "muicle",
@@ -58,7 +58,7 @@ const PLANTS = [
       "Alivia dolores de cabeza y de riñón",
       "Anemia (nota de herbolaria)",
     ],
-    imagen: "assets/MUICLE.jpg",
+    imagen: "assets/MUICLE.jpeg",
   },
   {
     id: "te-verde",
@@ -72,7 +72,7 @@ const PLANTS = [
       "Salud dental",
     ],
     precauciones: ["Si eres sensible a la cafeína, úsalo con moderación."],
-    imagen: "assets/TE VERDE.jpg",
+    imagen: "assets/TE VERDE.jpeg",
   },
   {
     id: "eucalipto",
@@ -84,7 +84,7 @@ const PLANTS = [
       "Gripes, resfriados",
       "Dermatitis, reuma (nota de herbolaria)",
     ],
-    imagen: "assets/EUCALIPTO.jpg",
+    imagen: "assets/EUCALIPTO.jpeg",
   },
   {
     id: "calendula",
@@ -95,7 +95,7 @@ const PLANTS = [
       "Quemaduras, golpes",
       "Antiinflamatorio",
     ],
-    imagen: "assets/CALENDULA.jpg",
+    imagen: "assets/CALENDULA.jpeg",
   },
   {
     id: "chintok",
@@ -106,7 +106,7 @@ const PLANTS = [
       "Diurético natural",
       "Reduce inflamaciones y espasmos",
     ],
-    imagen: "assets/CHINTOK.jpg",
+    imagen: "assets/CHINTOK.jpeg",
   },
   {
     id: "doradilla",
@@ -119,7 +119,7 @@ const PLANTS = [
       "Ácido úrico (nota de herbolaria)",
       "Vesícula biliar (nota de herbolaria)",
     ],
-    imagen: "assets/DORADILLA.jpg",
+    imagen: "assets/DORADILLA.jpeg",
   },
   {
     id: "palo-de-vibora",
@@ -131,7 +131,7 @@ const PLANTS = [
       "Renales y cálculos (nota de herbolaria)",
       "Antioxidante",
     ],
-    imagen: "assets/PALO DE VIBORA.jpg",
+    imagen: "assets/PALO DE VIBORA.jpeg",
   },
 
   // Plantilla rápida para que agregues más:
@@ -140,7 +140,7 @@ const PLANTS = [
   //   nombre: "Manzanilla",
   //   categorias: ["relajantes"],
   //   notas: ["Digestivo", "Relajante suave"],
-  //   imagen: "assets/manzanilla.jpg",
+  //   imagen: "assets/manzanilla.jpeg",
   // },
 ];
 
